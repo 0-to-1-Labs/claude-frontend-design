@@ -8,6 +8,13 @@ This skill guides creation of distinctive, production-grade frontend interfaces 
 
 The user provides frontend requirements: a component, page, application, or interface to build. They may include context about the purpose, audience, or technical constraints.
 
+## Workflow
+
+1. **Absorb the context** — purpose, audience, constraints, and any brand or technical requirements.
+2. **Commit to ONE direction** — before writing code, state the aesthetic direction in a single sentence (e.g. "editorial brutalism, ink-on-newsprint with one acid accent"). One direction, executed fully, beats a hedge of three.
+3. **Build it for real** — implement working, responsive code that realizes the direction in every detail.
+4. **Self-review against the Quality Floor** (below) before calling it done. Distinctive is the goal; broken is not acceptable.
+
 ## Design Thinking
 
 Before coding, understand the context and commit to a BOLD aesthetic direction:
@@ -36,8 +43,23 @@ Focus on:
 NEVER use generic AI-generated aesthetics like overused font families (Inter, Roboto, Arial, Space Grotesk, system fonts), cliched color schemes (particularly purple gradients on white backgrounds), predictable layouts and component patterns, and cookie-cutter designs that lack context-specific character.
 INSTEAD: distinctive fonts. Bold, committed palettes. Layouts that surprise. Bespoke details. Every choice rooted in rich context.
 
+### Loading the fonts
+Picking a distinctive font is half the job; actually loading it is the other half — a design that silently falls back to a system font is generic by default. Source from Google Fonts, Fontshare, or a self-hosted `@font-face`. `<link rel="preconnect">` the font host and `<link rel="preload">` the primary display face. Always set `font-display: swap` so text renders immediately. Prefer variable fonts to get the full weight/width/optical-size range in one request. Never ship a design depending on a fallback you didn't choose.
+
 Build creatively on the user's intent, and make unexpected choices that feel genuinely designed for the context. Every design should feel distinct. Actively explore the full range: light and dark themes, unexpected font pairings, substantially varied aesthetic directions. Let the specific context drive choices, NOT familiar defaults.
 
 **IMPORTANT**: Match implementation complexity to the aesthetic vision. Maximalist designs need elaborate code with extensive animations and effects. Minimalist or refined designs need restraint, elegance, and precision. All designs need careful attention to spacing, typography, and subtle details. Excellence comes from executing the vision well.
+
+## Quality floor (non-negotiable)
+
+Bold does not mean broken. An interface ships only when it clears this floor — refine the execution, never lower the ambition, to meet it:
+- **Responsive**: intentional from ~360px to ultrawide. No horizontal scroll, overflow, or broken layouts at any breakpoint.
+- **Contrast**: text meets WCAG AA (4.5:1 body, 3:1 large type) even with committed, saturated palettes — adjust the shade, not the boldness.
+- **Focus & keyboard**: every interactive element has a visible focus state and is fully operable by keyboard.
+- **Reduced motion**: gate non-essential animation behind `@media (prefers-reduced-motion: reduce)` with a calm fallback.
+- **Semantics**: real elements (`button`, `nav`, `main`, ordered headings), alt text, labelled inputs.
+- **Performance**: no layout shift on load (size media, preload fonts); heavy effects must not jank scroll.
+
+The floor is what separates "designed" from "demo." If a bold choice can't clear it, the execution isn't finished yet.
 
 Remember: Claude is capable of extraordinary, award-worthy creative work. Don't hold back, show what's truly possible, and commit relentlessly to a distinctive and unforgettable vision.
