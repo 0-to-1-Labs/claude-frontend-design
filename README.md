@@ -1,11 +1,21 @@
-# frontend-design (0 to 1 Labs fork)
+# frontend-design (0 to 1 Labs)
 
-A customized, expanded fork of Anthropic's stock `frontend-design` skill. It builds
-distinctive, production-grade frontend interfaces that avoid generic "AI slop" aesthetics —
-with sharper triggering, a broader set of aesthetic directions, and richer typographic,
-color, spatial, and motion guidance.
+A drop-in replacement for Anthropic's stock `frontend-design` skill. It is built on the
+[September 2026 revision](https://github.com/anthropics/skills/blob/41bbe19/skills/frontend-design/SKILL.md)
+of the upstream skill and adds four things the stock skill does not have:
+
+- a one-sentence statement of the design direction before the plan and the code;
+- font-loading mechanics (`display=swap` for hosted fonts, `preload` with `crossorigin`
+  for self-hosted fonts, metric-matched fallbacks against layout shift);
+- a concrete accessibility and responsive quality floor (WCAG AA contrast, visible
+  keyboard focus, `prefers-reduced-motion`, semantic elements, no layout shift);
+- triggers for the concrete things people ask for: components, pages, artifacts,
+  posters, landing pages, dashboards, React components, HTML/CSS layouts, and restyling.
+
+Everything else is the upstream text as published.
 
 ## Install
+
 Via the [0 to 1 Labs marketplace](https://github.com/0-to-1-Labs/claude-marketplace):
 
 ```
@@ -13,19 +23,43 @@ Via the [0 to 1 Labs marketplace](https://github.com/0-to-1-Labs/claude-marketpl
 /plugin install frontend-design@0-to-1-labs
 ```
 
-If you have the stock `frontend-design@claude-plugins-official` enabled, disable it to
-avoid a duplicate skill name.
+## Replace the stock plugin
+
+This plugin keeps the plugin name and the skill name `frontend-design` on purpose. Claude
+invokes it automatically in the same situations as the stock skill. Only one skill named
+`frontend-design` should load, so disable or uninstall the stock plugin:
+
+```
+/plugin disable frontend-design@claude-plugins-official
+```
+
+or
+
+```
+/plugin uninstall frontend-design@claude-plugins-official
+```
+
+If both plugins stay enabled, both skills load and both register as
+`/frontend-design:frontend-design`. Claude Code does not pick one for you. Its documented
+[name-conflict order](https://code.claude.com/docs/en/plugins/loading#name-conflicts)
+applies only to plugins from different origins (managed settings, `--plugin-dir`,
+marketplace, skills directory, claude.ai sync). Two installed marketplace plugins with the
+same manifest name fall outside that rule. Claude then sees two skills with the same name
+and chooses one from their descriptions on each request. You cannot tell from the session
+which guidance ran, and `/frontend-design:frontend-design` is ambiguous.
 
 ## What it does
-The `frontend-design` skill triggers when you ask to build web components, pages,
-artifacts, posters, dashboards, React components, HTML/CSS layouts, or to style/beautify
-any web UI. It guides a bold, intentional aesthetic direction and implements working,
-responsive code with meticulous attention to typography, color, motion, and composition.
+
+The `frontend-design` skill loads when you build new UI or reshape existing UI. It follows
+the upstream process: ground the design in the subject, plan a token system, review the
+plan against the brief for generic defaults, then build. This fork adds the direction
+statement, the font-loading rules, and the quality floor list described above.
 
 ## License
+
 Apache License 2.0. See [LICENSE](LICENSE).
 
 This is a derivative work of Anthropic's `frontend-design` skill
 ([anthropics/skills](https://github.com/anthropics/skills/tree/main/skills/frontend-design)),
 which is licensed under Apache 2.0. `skills/frontend-design/SKILL.md` was modified from
-the original by John P. Sasser.
+the original by 0 to 1 Labs. Source: <https://github.com/0-to-1-Labs/claude-frontend-design>.
