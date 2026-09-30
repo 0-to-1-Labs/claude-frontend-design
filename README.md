@@ -48,6 +48,25 @@ same manifest name fall outside that rule. Claude then sees two skills with the 
 and chooses one from their descriptions on each request. You cannot tell from the session
 which guidance ran, and `/frontend-design:frontend-design` is ambiguous.
 
+## Keep the plugin updated
+
+Claude Code can update this plugin automatically. Auto-update is off by default for
+third-party marketplaces, so turn it on once:
+
+1. Run `/plugin`.
+2. Open the **Marketplaces** tab and select `0-to-1-labs`.
+3. Choose **Enable auto-update**.
+
+Claude Code then checks for new versions after each session start and installs them.
+Restart Claude Code to load an update.
+
+To update by hand:
+
+```
+claude plugin marketplace update 0-to-1-labs
+claude plugin update frontend-design@0-to-1-labs
+```
+
 ## What it does
 
 The `frontend-design` skill loads when you build new UI or reshape existing UI. It follows
