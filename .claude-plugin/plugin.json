@@ -1,9 +1,11 @@
 {
   "name": "frontend-design",
-  "description": "Create distinctive, production-grade frontend interfaces with high design quality — expanded, anti-AI-slop fork of the stock skill with stronger triggering, richer typographic and aesthetic direction.",
-  "version": "1.1.0",
+  "description": "Drop-in replacement for Anthropic's frontend-design skill, built on the September 2026 upstream, plus a design-direction statement, font-loading mechanics, and a concrete accessibility and responsive quality floor.",
+  "version": "2.0.0",
   "author": {
     "name": "John P. Sasser"
   },
+  "homepage": "https://github.com/0-to-1-Labs/claude-frontend-design",
+  "repository": "https://github.com/0-to-1-Labs/claude-frontend-design",
   "license": "Apache-2.0"
 }
