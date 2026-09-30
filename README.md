@@ -10,7 +10,7 @@ Via the [0 to 1 Labs marketplace](https://github.com/0-to-1-Labs/claude-marketpl
 
 ```
 /plugin marketplace add 0-to-1-Labs/claude-marketplace
-/plugin install frontend-design@0to1-labs
+/plugin install frontend-design@0-to-1-labs
 ```
 
 If you have the stock `frontend-design@claude-plugins-official` enabled, disable it to
